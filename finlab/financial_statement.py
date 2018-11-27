@@ -103,7 +103,10 @@ def pack_htmls(year, season, directory):
         pbar.set_description('parse htmls %d season %d stock %s' % (year, season, stock_id))
         
         # 讀取html
-        dfs = pd.read_html(file)
+        try:
+            dfs = pd.read_html(file)
+        except Exception as e:
+            print('Failed to parse html: '+ str(e))
         
         # 假如html不完整，則略過
         if len(dfs) < 4:

@@ -222,7 +222,7 @@ def add_to_sql(conn, name, df):
     ret = pd.read_sql('select * from ' + name, conn, index_col=['stock_id', 'date']) if exist else pd.DataFrame()
     
     # add new df to the dataframe
-    ret = ret.append(df)
+    ret = ret.append(df, sort=True)
     ret.reset_index(inplace=True)
     ret['stock_id'] = ret['stock_id'].astype(str)
     ret['date'] = pd.to_datetime(ret['date'])
@@ -267,11 +267,11 @@ def update_table(conn, table_name, crawl_function, dates):
                 dfs = {i:pd.DataFrame() for i in data.keys()}
                     
             for i, d in data.items():
-                dfs[i] = dfs[i].append(d)
+                dfs[i] = dfs[i].append(d, sort=True)
                 
         # update single dataframe
         else:
-            df = df.append(data)
+            df = df.append(data, sort=True)
             print('success')
 
             

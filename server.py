@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -224,4 +226,4 @@ def update_output_div(input_value, date):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, processes=1)
+    app.run_server(debug=False, host="0.0.0.0", port=55557)

@@ -90,7 +90,7 @@ def backtest(start_date, end_date, hold_days, strategy, data, weight='average', 
                 'highest_price': s.max(),
                 'buy_date': pd.Series(s.index[0], index=s.columns),
                 'sell_date': s.apply(lambda s:s.dropna().index[-1]),
-            }))
+            }), sort=True)
             
             transections['profit(%)'] = (transections['sell_price'] / transections['buy_price'] - 1) * 100
             
